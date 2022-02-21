@@ -6,7 +6,14 @@ from dataclasses import asdict
 from typing import Any, List, Optional, Union
 from requests import HTTPError, Response, Session
 
-from mounty.errors import Conflict, ImposterError, MissingFields, NotFound, Unavailable
+from mounty.errors import (
+    Conflict,
+    ImposterError,
+    MissingFields,
+    NotFound,
+    Unavailable,
+    MissingEnvironmentVariable,
+)
 from mounty.models import (
     Imposter,
     ImposterResponse,
@@ -80,7 +87,12 @@ class Mountebank:
         Creates Mountebank admin instance based on MOUNTEBANK_URL env variable
         :return: Mountebank admin instance
         """
-        return cls(url=os.environ["MOUNTEBANK_URL"])
+        try:
+            return cls(url=os.environ["MOUNTEBANK_URL"])
+        except KeyError:
+            raise MissingEnvironmentVariable(
+                "MOUNTEBANK_URL environment variable is missing"
+            )
 
     def add_imposter(self, imposter: Union[dict, Imposter]) -> ImposterResponse:
         """

@@ -3,6 +3,25 @@ name = "mounty"
 version = "1.0.0"
 description = "A simple Python client for Mountebank"
 authors = ["Vasile Pop <vasile.pop@gmail.com>"]
+license = "BSD 3"
+readme = "README.md"
+repository = "https://github.com/vicusbass/mounty"
+homepage = "https://github.com/vicusbass/mounty"
+keywords = ["mountebank", "stub", "testing"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Web Environment",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: BSD License",
+  "Operating System :: OS Independent",
+  "Topic :: Internet :: WWW/HTTP",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3 :: Only",
+]
+include = ["LICENSE"]
 
 [tool.poetry.dependencies]
 python = "^3.9"

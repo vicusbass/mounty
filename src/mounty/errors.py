@@ -14,7 +14,7 @@ class ImposterError(Error):
 
 class NotFound(ImposterError):
     """
-    Actions on an non-existing Imposter
+    Actions on a non-existing Imposter
     """
 
 
@@ -28,3 +28,7 @@ class MissingFields(ImposterError):
     """
     Imposter payload is missing fields
     """
+
+
+class MissingEnvironmentVariable(Error):
+    ...
