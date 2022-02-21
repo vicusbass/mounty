@@ -1,6 +1,6 @@
 # mounty
 
-A wrapper for Mountebank REST API, can be used for existing instances or for testing in CI/CD ephemeral Mountebank instances. 
+A wrapper for Mountebank REST API, can be used for existing instances or for testing in CI/CD ephemeral Mountebank instances.
 
 ## Installation
 
