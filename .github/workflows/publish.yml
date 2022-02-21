@@ -11,10 +11,10 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
 
-      - name: Set up python 3.8
+      - name: Set up python 3.9
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8
+          python-version: 3.9
 
       - name: Install poetry
         uses: snok/install-poetry@v1
@@ -29,4 +29,4 @@ jobs:
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          password: ${{ secrets.PYPI_API_TOKEN }}
+          password: ${{ secrets.PYPI_TOKEN }}
