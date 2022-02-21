@@ -1,8 +1,12 @@
 [![codecov](https://codecov.io/gh/vicusbass/mounty/branch/main/graph/badge.svg?token=7Y76GKTW5L)](https://codecov.io/gh/vicusbass/mounty)
-
+[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/vicusbass/mounty.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/vicusbass/mounty/context:python)
 # mounty
 
 A wrapper for Mountebank REST API, can be used for existing instances or for testing in CI/CD ephemeral Mountebank instances.
+
+Who/what is Mountebank? Mountebank is an amazing open-source stub/service virtualisation tool, see more [here](http://www.mbtest.org/).
+It can be used as a stub service for any external dependency, it can run as proxy (recording and replaying requests), it can be used for load testing services in isolation (stub external requests, so no more latency added)
+
 
 ## Installation
 
@@ -61,3 +65,8 @@ $ poetry run pre-commit autoupdate
 $ poetry run pre-commit install
 $ poetry run pre-commit run --all-files
 ```
+
+#### TODOs
+
+- Add integration tests which will create scenarios in several versions of Mountebank running as docker containers
+- MORE examples

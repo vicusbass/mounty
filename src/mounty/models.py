@@ -1,7 +1,6 @@
-import dataclasses
 import json
 import logging
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, is_dataclass, asdict
 from typing import Any, Dict, List, Union
 
 logger = logging.getLogger(__name__)
@@ -87,8 +86,8 @@ class DataclassJSONEncoder(json.JSONEncoder):
     """
 
     def default(self, obj) -> dict:
-        if dataclasses.is_dataclass(obj):
-            return dataclasses.asdict(obj)
+        if is_dataclass(obj):
+            return asdict(obj)
         return super().default(obj)
 
 
