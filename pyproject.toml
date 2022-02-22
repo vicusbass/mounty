@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mounty"
-version = "1.0.0"
+version = "1.0.1"
 description = "A simple Python client for Mountebank"
 authors = ["Vasile Pop <vasile.pop@gmail.com>"]
 license = "BSD 3"
