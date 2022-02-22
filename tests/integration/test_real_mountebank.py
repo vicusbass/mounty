@@ -8,12 +8,12 @@ MOUNTEBANK_URL = "http://localhost:2525"
 IMPOSTER_PORT = 4555
 SIMPLE_IMPOSTER = {
     "port": IMPOSTER_PORT,
-    "protocol": "https",
+    "protocol": "http",
     "stubs": [{"responses": [{"is": {"statusCode": 201}}]}],
 }
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture
 def mountebank():
     mountebank = Mountebank(url=MOUNTEBANK_URL)
     yield mountebank

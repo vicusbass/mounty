@@ -196,7 +196,7 @@ class TestMountebankAdmin:
             httpretty.DELETE,
             f"{MOUNTEBANK_URL}/imposters",
             status=HTTPStatus.OK,
-            body=json.dumps([SIMPLE_IMPOSTER_STUB]),
+            body=json.dumps({"imposters": [SIMPLE_IMPOSTER_STUB]}),
         )
         imposters = mountebank.delete_all_imposters()
         assert imposters == [ImposterResponse(**SIMPLE_IMPOSTER_STUB)]

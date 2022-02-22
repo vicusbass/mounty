@@ -16,37 +16,48 @@ $ pip install mounty
 
 ## Usage examples:
 
+Start local Mountebank instance in container:
+
+```shell
+docker pull bbyars/mountebank:2.6.0
+# start the container exposing port 2525 for imposters administration and ports 4555/4556 for imposters
+docker run --rm -p 2525:2525 -p 8080:8080 -p 4555:4555 -p 4556:4556 bbyars/mountebank:2.6.0 mb start
+```
+
 ```python
 import requests
 from mounty import Mountebank
-from mounty.models import Imposter, Stub
-
-SIMPLE_IMPOSTER = {
- "port": 4555,
- "protocol": "https",
- "stubs": [{"responses": [{"is": {"statusCode": 201}}]}],
-}
+from mounty.models import Imposter, Stub, RecordedRequest
 
 # the url must contain the port on which Mountebank is listening
-mountebank = Mountebank(url="http://mountebank.foo:2525")
+mountebank = Mountebank(url="http://localhost:2525")
 # or, if MOUNTEBANK_URL variable is defined:
 mountebank_from_env = Mountebank.from_env()
 
-imposter = mountebank.add_imposter(imposter=SIMPLE_IMPOSTER)
+# add imposter as dict
+imposter = mountebank.add_imposter(imposter={
+ "port": 4555,
+ "protocol": "http",
+ "stubs": [{"responses": [{"is": {"statusCode": 201}}]}],
+})
 
+# add another imposter as Imposter object
 other_imposter = mountebank.add_imposter(
  imposter=Imposter(
-  port=4556,
-  protocol="http",
-  stubs=[Stub(responses=[{"is": {"statusCode": 201}}])],
+    port=4556,
+    protocol="http",
+    recordRequests=True,
+    stubs=[Stub(responses=[{"is": {"statusCode": 201}}])],
  )
 )
 
 # peform 2 requests
-requests.post(url="http://mountebank.foo:4545")
-requests.post(url="http://mountebank.foo:4545")
+requests.post(url="http://localhost:4556")
+requests.post(url="http://localhost:4556")
 # wait for maximum 2 seconds for the imposter to contain 2 recorded requests
-reqs = mountebank.wait_for_requests(port=4555, count=2, timeout=2)
+reqs = mountebank.wait_for_requests(port=4556, count=2, timeout=2)
+# validate recorded request
+assert type(reqs[0]) == RecordedRequest
 ```
 
 #### Local development
@@ -68,5 +79,4 @@ $ poetry run pre-commit run --all-files
 
 #### TODOs
 
-- Add integration tests which will create scenarios in several versions of Mountebank running as docker containers
 - MORE examples
