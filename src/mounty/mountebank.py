@@ -68,7 +68,7 @@ class Mountebank:
                 body = e.response.json()
                 error = body["errors"][0]
                 code = error["code"]
-                message = error["message"]
+                message = error.get("message", "")
 
                 if code == "resource conflict":
                     raise Conflict(code, message) from e

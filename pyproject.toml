@@ -22,6 +22,7 @@ classifiers = [
   "Programming Language :: Python :: 3 :: Only",
 ]
 include = ["LICENSE"]
+exclude = ["examples"]
 
 [tool.poetry.dependencies]
 python = "^3.9"

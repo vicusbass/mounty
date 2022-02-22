@@ -5,7 +5,7 @@
 A wrapper for Mountebank REST API, can be used for existing instances or for testing in CI/CD ephemeral Mountebank instances.
 
 Who/what is Mountebank? Mountebank is an amazing open-source stub/service virtualisation tool, see more [here](http://www.mbtest.org/).
-It can be used as a stub service for any external dependency, it can run as proxy (recording and replaying requests), it can be used for load testing services in isolation (stub external requests, so no more latency added)
+It can be used as a stub service for any external dependency, it can run as proxy (recording and replaying requests), it can be used for load testing services in isolation (stub external requests, so no latency added)
 
 
 ## Installation
@@ -51,7 +51,7 @@ other_imposter = mountebank.add_imposter(
  )
 )
 
-# peform 2 requests
+# perform 2 requests
 requests.post(url="http://localhost:4556")
 requests.post(url="http://localhost:4556")
 # wait for maximum 2 seconds for the imposter to contain 2 recorded requests
@@ -76,7 +76,3 @@ $ poetry run pre-commit autoupdate
 $ poetry run pre-commit install
 $ poetry run pre-commit run --all-files
 ```
-
-#### TODOs
-
-- MORE examples
