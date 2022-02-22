@@ -122,7 +122,7 @@ class Mountebank:
         :return: list of existing imposters before deletion
         """
         response = self.__request(method="DELETE", url=self._imposters_url)
-        return [ImposterResponse(**ires) for ires in response.json()]
+        return [ImposterResponse(**ires) for ires in response.json()["imposters"]]
 
     def get_imposter(self, port) -> ImposterResponse:
         """

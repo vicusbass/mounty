@@ -74,7 +74,7 @@ class ImposterResponse(Imposter):
 
     def __post_init__(self) -> None:
         """
-        Convert json request field to objects
+        Convert json request field to object
         :return: Instance with requests field converted to class instance
         """
         self.requests = [RecordedRequest(**req) for req in self.requests]
